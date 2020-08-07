@@ -12,16 +12,16 @@ class App extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   // console.log("CDM running");
-  //   axios
-  //     .get("https://api.github.com/users/Dodgers-42")
-  //     .then((res) => {
-  //       this.setState({ user: res.data });
-  //       // console.log(this.state);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+  componentDidMount() {
+    console.log("CDM running");
+    axios
+      .get("https://api.github.com/users/Dodgers-42")
+      .then((res) => {
+        this.setState({ user: res.data });
+        console.log("got it",this.state);
+      })
+      .catch((err) => console.log("Damn", err));
+  }
 
   // componentDidUpdate(prevState, prevProps) {
   //   if (prevState.doggos !== this.state.doggos) {
@@ -46,14 +46,14 @@ class App extends React.Component {
     this.setState({
       // take the previous state, and just change the dogBreed text
       ...this.state,
-      dogBreed: e.target.value
+      userCard: e.target.value
     });
   };
 
   render() {
     console.log("Render");
     return (
-      
+
     );
   }
 }
