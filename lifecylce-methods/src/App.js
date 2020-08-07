@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor() {
@@ -23,62 +24,41 @@ class App extends React.Component {
       .catch((err) => console.log("Damn", err));
   }
 
-  // componentDidUpdate(prevState, prevProps) {
-  //   if (prevState.doggos !== this.state.doggos) {
-  //     console.log("doggos have changed!");
-  //   }
-  //   if (prevState.dogBreed !== this.state.dogBreed) {
-  //     console.log("State updated, dog breed:", this.state.dogBreed);
-  //   }
-  // }
+  componentDidUpdate(prevState, prevProps) {
+    console.log("updating");
+    if (prevState.user !== this.state.user) {
+      console.log("user have changed!");
+    }
+    if (prevState.userCard !== this.state.userCard) {
+      console.log("State updated, user card:", this.state.userCard);
+    }
+  }
 
-  fetchUsers = () => {
-    axios
-      .get(`https://api.github.com/users/Dodgers-42`)
-      .then((res) => {
-        this.setState({ user: res.data });
-      })
-      .catch((err) => console.log(err));
-  };
+  // fetchUsers = () => {
+  //   axios
+  //     .get(`https://api.github.com/users/Dodgers-42`)
+  //     .then((res) => {
+  //       this.setState({ user: res.data });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  handleChanges = (e) => {
-    console.log("handleChanges called");
-    this.setState({
-      // take the previous state, and just change the dogBreed text
-      ...this.state,
-      userCard: e.target.value
-    });
-  };
+  // handleChanges = (e) => {
+  //   console.log("handleChanges called");
+  //   this.setState({
+  //     // take the previous state, and just change the userCard text
+  //     ...this.state,
+  //     userCard: e.target.value
+  //   });
+  // };
 
   render() {
     console.log("Render");
     return (
-
+      <h1>Name List</h1>
+      
     );
   }
 }
   export default App;
 
-// function App() {
-//   // make App class component like the lecture
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
