@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Card from './Card';
 
 class App extends React.Component {
   constructor() {
@@ -34,14 +35,15 @@ class App extends React.Component {
     }
   }
 
-  // fetchUsers = () => {
-  //   axios
-  //     .get(`https://api.github.com/users/Dodgers-42`)
-  //     .then((res) => {
-  //       this.setState({ user: res.data });
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  fetchUsers = () => {
+    axios
+      .get(`https://api.github.com/users/Dodgers-42/following`)
+      .then((res) => {
+        this.setState({ following: res.data });
+         console.log(this.state.following) 
+      })
+      .catch((err) => console.log('following',err));
+  };
 
   // handleChanges = (e) => {
   //   console.log("handleChanges called");
@@ -55,7 +57,10 @@ class App extends React.Component {
   render() {
     console.log("Render");
     return (
-      <h1>Name List</h1>
+      <div>
+        <Card user={this.state.user} following={this.state.following} />
+      </div>
+      // <h1>Name List</h1>
       
     );
   }
