@@ -21,16 +21,18 @@ class App extends React.Component {
     axios
       .get("https://api.github.com/users/Dodgers-42")
       .then((res) => {
-        this.setState({ user: res.data, ...this.state });
+        this.setState({ user: res.data });
         // console.log("got it",this.state);
       })
       .catch((err) => console.log("Damn", err));
   }
 
-  componentDidUpdate(prevState, prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps);
+    console.log(prevState);
     console.log("updating");
-    if (prevState.user !== this.state.user) {
-      console.log("user have changed!", pre);
+    if (Object.entries(prevState.user).length === 0) {
+      console.log("user have changed!", prevState, this.state);
     this.fetchFallowing();
     }
     if (prevState.following !== this.state.following) {
@@ -43,7 +45,8 @@ class App extends React.Component {
     axios
       .get(`https://api.github.com/users/Dodgers-42/followers`)
       .then((res) => {
-        //this.setState({ following: res.data.following, ...this.state });
+        console.log(res);
+        this.setState({ following: res.data});
   
       })
       .catch((err) => console.log('following',err));
@@ -83,22 +86,7 @@ class App extends React.Component {
   }
 }
 
-// {users.map(user => (
-//   <div key={user.id} className="card">
-//       <img src={user.avatar_url} alt='profile avatar' />
-//       <div className="card-info">
-//           <h3 className="name">{user.name}</h3>
-//           <p className="username">{user.login}</p>
-//           <p>Location: {users.location}</p>
-//           <p>Profile:
-//               <a href={user.url}>{user.url}</a>
-//           </p>
-//           <p>Followers: {user.followers}</p>
-//           <p>Following: {users.following}</p>
-//           <p>Bio: {user.bio}</p>
-//       </div>
-//   </div>
-// ))}
+
 
   export default App;
 
